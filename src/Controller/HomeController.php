@@ -22,7 +22,7 @@ class HomeController extends AbstractController
 
         #On stocke notre formulaire préparé dans notre variable
         $form = $this->createForm(AddPostType::class, $addpost)->handleRequest($request);
-       
+        
         if($form->isSubmitted() && $form->isValid())
         {
             $entityManager = $this->getDoctrine()->getManager();
