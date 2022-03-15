@@ -30,14 +30,16 @@ class RegistrationController extends AbstractController
             # Encodage du mot de passe
             $clearPassword = $form->get('password')->getData();
             $user->setPassword($passwordHasher->hashPassword($user, $clearPassword));
-
+            
+            # On met les rôles sur USER de base
             $user->setRoles(["ROLE_USER"]);
-        
+            
+            # Envoi sur la bdd
             $entityManager = $doctrine->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
             
-
+            # Notification
             $this->addFlash('success', 'Votre compte a été créé avec succès ! Veuillez vous authentifier');
             return $this->redirectToRoute('app_login');
         }
