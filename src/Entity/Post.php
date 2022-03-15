@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\PostRepository;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\PostRepository;
 
 #[ORM\Entity(repositoryClass: PostRepository::class)]
 class Post
@@ -16,7 +17,7 @@ class Post
     #[ORM\Column(type: 'string', length: 255)]
     private $title;
 
-    #[ORM\Column(type: 'datetime_immutable')]
+    #[ORM\Column(type: 'datetime')]
     private $created_at;
 
     #[ORM\Column(type: 'string', length: 255)]
@@ -28,8 +29,10 @@ class Post
     #[ORM\Column(type: 'integer')]
     private $user_id;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $no;
+    public function __construct(){
+        $this->created_at = new DateTime();
+        $this->status = "Published";
+    }
 
     public function getId(): ?int
     {
@@ -48,12 +51,12 @@ class Post
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->created_at;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $created_at): self
+    public function setCreatedAt(\DateTime $created_at): self
     {
         $this->created_at = $created_at;
 
@@ -96,15 +99,5 @@ class Post
         return $this;
     }
 
-    public function getNo(): ?string
-    {
-        return $this->no;
-    }
 
-    public function setNo(string $no): self
-    {
-        $this->no = $no;
-
-        return $this;
-    }
 }
