@@ -13,11 +13,12 @@ class Likes
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'integer')]
-    private $user_id;
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'likes')]
+    private $user;
 
-    #[ORM\Column(type: 'integer')]
-    private $comment_id;
+    #[ORM\ManyToOne(targetEntity: Comment::class, inversedBy: 'likes')]
+    private $comment;
+
 
     public function getId(): ?int
     {
@@ -29,22 +30,28 @@ class Likes
         return $this->user_id;
     }
 
-    public function setUserId(int $user_id): self
+    public function getUser(): ?User
     {
-        $this->user_id = $user_id;
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
 
-    public function getCommentId(): ?int
+    public function getComment(): ?Comment
     {
-        return $this->comment_id;
+        return $this->comment;
     }
 
-    public function setCommentId(int $comment_id): self
+    public function setComment(?Comment $comment): self
     {
-        $this->comment_id = $comment_id;
+        $this->comment = $comment;
 
         return $this;
     }
+
 }
