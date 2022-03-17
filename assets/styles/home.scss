@@ -1,8 +1,24 @@
-.stream-post {
-    padding: .75rem;
-    background: #f7f7f9;
-    border: 1px solid #eceeef;
-    border-radius: .25rem;
-    margin-bottom: 1.5rem
+.containerQuestion{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 4% 8%;
 }
 
+.left{
+    width: 20%;
+}
+
+.right{
+    width: 80%;
+}
+
+.infoFlex{
+    display: flex;
+    justify-content: space-between;
+}
+
+.tag{
+    padding: 1% 5%;
+    margin-top: 2%;
+}
