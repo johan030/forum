@@ -33,18 +33,21 @@ class HomeController extends AbstractController
             $addpost->setUser($Userr);
 
             if ($form->isSubmitted() && $form->isValid()) {
+        
                 $entityManager = $doctrine->getManager();
                 $entityManager->persist($addpost);
                 $entityManager->flush();
+
             } elseif ($form->isSubmitted() && $form->getErrors()) {
-                $this->addFlash('warning', 'Post Envoyé !');
+                
+                $this->addFlash('warning', 'Erreur !');
+
             }
         }
         elseif($form->isSubmitted() && $form->getErrors())
         {
             $this->addFlash('warning', 'Post Envoyé !');
         }
-
 
         return $this->render('home/index.html.twig', [
             'posts' => $posts->getPostsOrderBy(),

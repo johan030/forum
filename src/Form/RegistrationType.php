@@ -18,7 +18,11 @@ class RegistrationType extends AbstractType
             ->add('username')
             ->add('email')
             ->add('password')
-            ->add('button', SubmitType::class)
+            ->add('button', SubmitType::class, [
+                'attr' => [
+                    'value' => 'Submit'
+                ],
+            ])
         ;
     }
 
