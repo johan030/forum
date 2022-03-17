@@ -1,7 +1,65 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello Post!{% endblock %}
+{% block title %}Post n°{{post.id}}
+	| Stackoverflow
+{% endblock %}
+
+{% block stylesheets %}
+	{{parent()}}
+	{{ encore_entry_link_tags('post') }}
+{% endblock %}
+
+{% block javascripts %}
+	{{parent()}}
+	{{ encore_entry_script_tags('post') }}
+{% endblock %}
 
 {% block body %}
-{{post.title}}
+
+	<div class="col-md-8 m-auto" id="question">
+		<h1 class="text-center py-4">{{post.title}}</h1>
+		<div class="d-flex justify-content-around py-4">
+			<p class="tagsOfOneQuestion">Asked:
+				{{post.createdAt|date('d-m-Y H:i:s')}}</p>
+			<p class="tagsOfOneQuestion">By
+				{{post.user.username}}</p>
+			<p class="tagsOfOneQuestion">Answers</p>
+		</div>
+
+		<div class="line"></div>
+
+		<div class="col-md-12 m-auto py-4">
+			<h5 class="contentOfQuestion">{{post.content}}</h5>
+		</div>
+	</div>
+
+	{% if app.user %}
+		<div class="col-md-6 m-auto py-4">
+			{{form_start(form)}}
+			{{form_end(form)}}
+		</div>
+	{% else %}
+		<h5 class="py-4 text-center notificationLoginIn">To respond to the question you have to be logged in. You can log in
+			<a href="{{path('app_login')}}">here.</a>
+		</h5>
+	{% endif %}
+
+
+	<div class="line"></div>
+
+	{% for comment in comments %}
+
+		<div class="col-md-8 m-auto ">
+
+			<p class="paragraphQuestion">{{comment.content}}</p>
+
+			<div class="d-flex justify-content-between">
+				<p>{{comment.createdAt | date('d-m-Y H:i:s') }}</p>
+				<p>{{comment.user.username}}</p>
+			</div>
+
+			<div class="line"></div>
+
+		</div>
+	{% endfor %}
 {% endblock %}

@@ -1,0 +1,43 @@
+
+.tagsOfOneQuestion{
+    background-color: #ffa500;
+    padding: 1%;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+/* Formulaire */
+.active-amber-textarea.md-form label.active {
+    color: #ffa000;
+}
+.amber-textarea textarea.md-textarea:focus:not([readonly]) {
+    border-bottom: 1px solid #ffa000;
+    box-shadow: 0 1px 0 0 #ffa000;
+}
+.amber-textarea.md-form .prefix.active {
+    color: #ffa000;
+}
+.active-amber-textarea.md-form textarea.md-textarea:focus:not([readonly])+label {
+    color: #ffa000;
+}
+/* Fin Formulaire */
+
+/* Contenu d'une seule question */
+.paragraphQuestion, .contentOfQuestion{
+    padding: 3%;
+}
+.paragraphQuestion{
+    border-radius: 8px;
+    background-color: #ffa50061;
+}
+
+.contentOfQuestion{
+    background-color: #dcdcdc;
+    border: black 1px dashed;
+    border-radius: 6px;
+}
+
+.notificationLoginIn{
+    background-color: rgba(255, 0, 0, 0.329);
+    margin: 4% 0;
+}
